@@ -1,0 +1,72 @@
+@host = http://localhost:5000/vpo/v1
+
+###
+GET {{host}}/documents/folio/1
+Content-Type: application/json
+
+###
+POST {{host}}/documents/baptisms
+Content-Type: application/json
+
+{
+    "firstname":"Elida",
+    "secondname":"Noemi",
+    "lastname":"Castrillo",
+    "secondlastname":"Maldonado",
+    "borndate":"1997-2-24",
+    "dpi":"339379092",
+    "sex":"F",
+    "folio":1,
+    "baptism_date":"1997-4-2",
+    "priest":{
+        "id_priest":"1"
+    },
+    "place":{
+        "id":"qwertyuiop"
+    },
+    "address":"Caserio Araizapo Aldea el Durazno Jalapa",
+    "father":{
+        "id_father":"9b6e8df8-dd44-47c7-b2c7-a4b226d0cf84"
+    },
+    "mother":{
+        "id_mother":"396aa1eb-208c-4ff6-a655-dce2a02b46b4"
+    },
+    "godmother":{
+        "id_godmother":"876ae4da-0dc8-4f18-ab85-3ec7926ae09f"
+    }
+}
+
+###
+# ###
+# POST {{host}}/documents/baptisms
+# Content-Type: application/json
+
+# {
+#     "firstname":"Silvia",
+#     "secondname":"Betzaida",
+#     "lastname":"Castrillo",
+#     "secondlastname":"Maldonado",
+#     "borndate":"1997-2-24",
+#     "dpi":"339379092",
+#     "sex":"M",
+#     "folio":"1",
+#     "baptism_date":"1997-4-2",
+#     "priest":"1",
+#     "place":"2",
+#     "address":"",
+#     "father":{
+#         "id_father":"9b6e8df8-dd44-47c7-b2c7-a4b226d0cf84"
+#     },
+#     "mother":{
+#         "id_mother":"396aa1eb-208c-4ff6-a655-dce2a02b46b4"
+#     },
+#     "godfather":{
+#         "id_godfather":""
+#     },
+#     "godmother":{
+#         "id_godmother":"876ae4da-0dc8-4f18-ab85-3ec7926ae09f"
+#     },
+#     "manager":{
+#         "id_manager":""
+#     }
+# }

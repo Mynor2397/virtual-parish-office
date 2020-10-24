@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body >
+    <div style="padding: 2rem; border-radius: 3rem;">
+        <div style="background-color: rgb(248, 248, 248); padding: 2rem; border-radius: 0.25rem;">
+            <h4 align="center">Por medio del presente correo hacemos una solicitud de búsqueda
+            para esta partida, seguidamente proporcionamos los datos correspondientes:</h4>
+            <div style="display: flex; align-items: center;">
+                <div style="padding: 1rem">Primer nombre: <h4 style="color: darkblue"> {{.Firstname}}</h4></div>
+                <div style="padding: 1rem">Segundo nombre: <h4 style="color: darkblue">{{.Secondname}}</h4></div>
+                {{if .Thirdname}}<div style="padding: 2rem">Tercer nombre: <h4 style="color: darkblue"> {{.Thirdname}}</h4></div>{{end}}
+                <div style="padding: 1rem">Primer apellido: <h4 style="color: darkblue">{{.Lastname}}</h4></div>
+                <div style="padding: 1rem">Segundo apellido:<h4 style="color: darkblue"> {{.Secondlastname}}</h4></div>
+
+            </div>
+            <h4 style="text-align: center;">Agradecemos la revisión. Att. Parroquia Inmaculada Concepción Monjas Jalapa</h4>
+        </div>
+    </div>
+</body>
+
+</html>

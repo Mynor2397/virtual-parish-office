@@ -1,0 +1,5 @@
+@host = http://localhost:5000/vpo/v1
+
+###
+GET {{host}}/place/many
+Content-Type: application/json

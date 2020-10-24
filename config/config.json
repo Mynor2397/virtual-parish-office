@@ -1,0 +1,10 @@
+{
+    "PORT":"5000",
+    "HOSTDB":"monjasvirtual.mysql.database.azure.com",
+    "PORTDB": 3306,
+    "USERDB":"adminmonjas@monjasvirtual",
+    "PASSWORDDB":"mzXyUMg2021_",
+    "DATABASE": "vpo",
+    "ADDRESSMAIL": "marold97@outlook.com",
+    "NAMEMAIL": "Mynor Castrillo"
+}

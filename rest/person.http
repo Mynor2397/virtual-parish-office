@@ -1,0 +1,23 @@
+@host = http://localhost:5000/vpo/v1
+
+###
+POST {{host}}/persons/create
+Content-Type: application/json
+
+{
+	"firstname":"Estefanía",
+	"secondname":"Karina",
+	"lastname":"Marcos",
+	"secondlastname":"Gutierrez",
+	"dpi":"3393791032101",
+	"sexo":"F",
+	"address":"Caserio Araizapo Aldea el Durazno Jalapa"
+}
+
+###
+GET {{host}}/persons/many/M
+Content-Type: application/json
+
+###
+GET {{host}}/persons/priest
+Content-Type: application/json

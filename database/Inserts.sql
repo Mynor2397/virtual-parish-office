@@ -1,0 +1,1 @@
+INSERT INTO vpo_userrole (typeRol, description) VALUES('admin','Usuario con todos los permisos');
