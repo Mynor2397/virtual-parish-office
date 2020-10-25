@@ -35,32 +35,8 @@ func (*repoDocument) GetFolio(ctx context.Context, idBook int) ([]models.Folio, 
 
 func (*repoDocument) Baptism(ctx context.Context, baptism models.Baptism) (string, error) {
 	query := "call registbaptism(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-	fmt.Println(baptism.IDFather)
-	_, err := db.QueryContext(ctx,
-		query,
-		baptism.IDAddress,
-		baptism.Address,
-		baptism.IDBaptism,
-		baptism.Folio,
-		baptism.BaptismDate,
-		baptism.IDPriest,
-		baptism.ID,
-		baptism.IDBaptized,
-		baptism.Firstname,
-		baptism.Secondname,
-		baptism.Lastname,
-		baptism.Secondlastname,
-		baptism.Borndate,
-		baptism.DPI,
-		baptism.Sex,
-		baptism.IDFather,
-		baptism.IDMother,
-		baptism.IDGodfather,
-		baptism.IDGodMother,
-		baptism.IDManager,
-	)
 
-	fmt.Println(
+	_, err := db.QueryContext(ctx,
 		query,
 		baptism.IDAddress,
 		baptism.Address,
@@ -88,7 +64,7 @@ func (*repoDocument) Baptism(ctx context.Context, baptism models.Baptism) (strin
 		return "", err
 	}
 
-	return baptism.IDBaptized, nil
+	return baptism.IDBaptism, nil
 }
 
 func (*repoDocument) GetBaptisms(ctx context.Context, filter string) ([]models.Baptism, error) {
