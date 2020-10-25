@@ -3,7 +3,6 @@ package storage
 import (
 	"context"
 	"database/sql"
-	"fmt"
 
 	"github.com/Mynor2397/virtual-parish-office/internal/lib"
 	"github.com/Mynor2397/virtual-parish-office/internal/models"
@@ -160,9 +159,9 @@ func (*repoDocument) GetAudit(ctx context.Context) ([]models.Audit, error) {
 	audi := models.Audit{}
 	audits := []models.Audit{}
 
-	query := "SELECT u.userName, hb.dateEmitted, b.numberBaptism FROM vpo_user u "+
-		     "INNER JOIN vpo_baptismhistory hb ON u.idUser = hb.idUser " +
-			 " INNER JOIN vpo_baptism b ON b.idBaptism = hb.idBaptism;"
+	query := "SELECT u.userName, hb.dateEmitted, b.numberBaptism FROM vpo_user u " +
+		"INNER JOIN vpo_baptismhistory hb ON u.idUser = hb.idUser " +
+		" INNER JOIN vpo_baptism b ON b.idBaptism = hb.idBaptism;"
 
 	data, err := db.QueryContext(ctx, query)
 	if err == sql.ErrNoRows {
