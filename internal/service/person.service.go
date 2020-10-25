@@ -72,3 +72,9 @@ func (*personService) CreatePriest(ctx context.Context, priest models.Priest) (i
 func (*personService) GetCountPriest(ctx context.Context) (int, error) {
 	return myPersonStorage.GetLastPriest(ctx)
 }
+
+func (*personService) UpdatePerson(ctx context.Context, person models.Person, id string) error {
+	person.ID = id
+
+	return myPersonStorage.UpdatePerson(ctx, person)
+}

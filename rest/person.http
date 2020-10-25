@@ -21,3 +21,17 @@ Content-Type: application/json
 ###
 GET {{host}}/persons/priest
 Content-Type: application/json
+
+
+###
+PUT {{host}}/persons/108dccf6-b425-4909-8bf6-cfd1c30bcee9
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMTU0ZDY1MGEtZWY4YS00YjExLTkwYTEtY2MxNGI5MzBkYTJmIiwidXNlcm5hbWUiOiJtaWtlIiwicm9sIjoiYWRtaW4ifSwiZXhwIjoxNjAzNjU2MTMzLCJpc3MiOiJtYXJvbGQ5N0BvdXRsb29rLmNvbSJ9.ll_Z7ZkWGFyC1vylgHXrP0ClfWoBmN0Tg9xZ7H7cyyN0qtrLUZhzSHk6PbeHuomhL9WTdElURIv1bfAWPnh1O5KuKUtl9hlpfpRktMMTwvgywkv-92YnOeYUd_uwLw1HinMcavjmPqiEUBuXuNpXJg7uvLVPx5hr9T6ZXeipUAE
+
+{
+	"firstname":"Estefanía",
+	"secondname":"Marina",
+	"lastname":"Marcos",
+	"secondlastname":"Gutierrez",
+	"sexo":"F"
+}

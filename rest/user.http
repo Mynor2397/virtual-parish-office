@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ####
-POST {{host}}/users/login
+POST {{host}}/login
 
 {
     "username":"mike",

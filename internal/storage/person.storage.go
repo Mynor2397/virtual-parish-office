@@ -274,16 +274,16 @@ func (*repoPerson) GetManyPersonByFilter(ctx context.Context, limit int, filter 
 			" limit ?;"
 
 		rows, err := db.QueryContext(ctx, query, limit)
-		if err == sql.ErrNoRows{
+		if err == sql.ErrNoRows {
 			return persons, lib.ErrNotFound
 		}
 
-		if err != nil{
+		if err != nil {
 			return persons, nil
 		}
 
 		var count int = 1
-		for rows.Next(){
+		for rows.Next() {
 
 			if err := rows.Scan(
 				&person.ID,
@@ -291,7 +291,7 @@ func (*repoPerson) GetManyPersonByFilter(ctx context.Context, limit int, filter 
 				&person.Secondname,
 				&person.Lastname,
 				&person.Secondlastname,
-			); err != nil{
+			); err != nil {
 				return persons, err
 			}
 			person.Count = count
@@ -308,16 +308,16 @@ func (*repoPerson) GetManyPersonByFilter(ctx context.Context, limit int, filter 
 			" limit ?;"
 
 		rows, err := db.QueryContext(ctx, query, "%"+filter+"%", limit)
-		if err == sql.ErrNoRows{
+		if err == sql.ErrNoRows {
 			return persons, lib.ErrNotFound
 		}
 
-		if err != nil{
+		if err != nil {
 			return persons, nil
 		}
 
 		var count int = 1
-		for rows.Next(){
+		for rows.Next() {
 
 			if err := rows.Scan(
 				&person.ID,
@@ -325,7 +325,7 @@ func (*repoPerson) GetManyPersonByFilter(ctx context.Context, limit int, filter 
 				&person.Secondname,
 				&person.Lastname,
 				&person.Secondlastname,
-			); err != nil{
+			); err != nil {
 				return persons, err
 			}
 
@@ -336,4 +336,31 @@ func (*repoPerson) GetManyPersonByFilter(ctx context.Context, limit int, filter 
 	}
 
 	return persons, nil
+}
+
+func (*repoPerson) UpdatePerson(ctx context.Context, person models.Person) error {
+	querydb := "UPDATE VPO_Person SET " +
+		"firstName = ?, " +
+		"secondName = ?, " +
+		"lastName = ?, " +
+		"secondLastName = ?, " +
+		"sex = ? " +
+		"WHERE idPerson = ?; "
+
+	_, err := db.QueryContext(
+		ctx,
+		querydb,
+		person.Firstname,
+		person.Secondname,
+		person.Lastname,
+		person.Secondlastname,
+		person.Sexo,
+		person.ID,
+	)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

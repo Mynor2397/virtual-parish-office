@@ -3,13 +3,13 @@ package controller
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/Mynor2397/virtual-parish-office/internal/middleware"
 	"net/http"
 	"strconv"
 
 	"github.com/gorilla/mux"
 
 	"github.com/Mynor2397/virtual-parish-office/internal/lib"
+	"github.com/Mynor2397/virtual-parish-office/internal/middleware"
 	"github.com/Mynor2397/virtual-parish-office/internal/models"
 )
 
@@ -86,7 +86,7 @@ func (*personController) GetManyPersons(w http.ResponseWriter, r *http.Request) 
 	w.WriteHeader(http.StatusNoContent)
 }
 
-func (*personController) GetManyPersonByFilter(w http.ResponseWriter, r *http.Request){
+func (*personController) GetManyPersonByFilter(w http.ResponseWriter, r *http.Request) {
 	_, ok := middleware.IsAuthenticated(r.Context())
 	if !ok {
 		respond(w, response{Message: lib.ErrUnauthenticated.Error()}, http.StatusUnauthorized)
@@ -94,10 +94,10 @@ func (*personController) GetManyPersonByFilter(w http.ResponseWriter, r *http.Re
 	}
 
 	vars := mux.Vars(r)
-	limit, err :=strconv.Atoi(vars["limit"])
-	if err != nil{
+	limit, err := strconv.Atoi(vars["limit"])
+	if err != nil {
 		respond(w, response{
-			Ok: false,
+			Ok:      false,
 			Message: err.Error(),
 		}, http.StatusBadRequest)
 		return
@@ -317,7 +317,7 @@ func (*personController) GetManyPriestByFilter(w http.ResponseWriter, r *http.Re
 	w.WriteHeader(http.StatusNoContent)
 }
 
-func (*personController) GetCountPriest(w http.ResponseWriter, r *http.Request){
+func (*personController) GetCountPriest(w http.ResponseWriter, r *http.Request) {
 
 	_, ok := middleware.IsAuthenticated(r.Context())
 	if !ok {
@@ -402,6 +402,53 @@ func (*personController) DeleteBaptizedPartida(w http.ResponseWriter, r *http.Re
 			Ok:   true,
 			Data: "Borrado satisfactoriamente",
 		}, http.StatusOK)
+		return
+	}
+
+	if err != nil {
+		respondError(w, err)
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+}
+
+func (*personController) UpdatePerson(w http.ResponseWriter, r *http.Request) {
+	_, ok := middleware.IsAuthenticated(r.Context())
+	if !ok {
+		respond(w, response{Message: lib.ErrUnauthenticated.Error()}, http.StatusUnauthorized)
+		return
+	}
+	var id string = ""
+	vars := mux.Vars(r)
+	id = vars["id"]
+
+	if id == "" {
+		respond(w, response{
+			Ok:      false,
+			Message: "unexpected id",
+		}, http.StatusBadRequest)
+		return
+	}
+
+	defer r.Body.Close()
+	var person models.Person
+
+	if err := json.NewDecoder(r.Body).Decode(&person); err != nil {
+		respond(w, response{
+			Ok:      false,
+			Message: err.Error(),
+		}, http.StatusBadRequest)
+		return
+	}
+
+	err := personService.UpdatePerson(r.Context(), person, id)
+	if err == nil {
+		respond(w, response{
+			Ok:      true,
+			Message: "Successfully updated",
+		}, http.StatusOK)
+
 		return
 	}
 

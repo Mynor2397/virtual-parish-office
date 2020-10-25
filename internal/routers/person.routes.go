@@ -18,6 +18,8 @@ var (
 func SetPersonRoutes(router *mux.Router) *mux.Router {
 	person := router.PathPrefix("/persons").Subrouter()
 	person.HandleFunc("/create", personController.Create).Methods("POST")
+	person.HandleFunc("/{id}", personController.UpdatePerson).Methods("PUT")
+
 	person.HandleFunc("/many/{sex}", personController.GetManyPersons).Methods("GET")
 	person.HandleFunc("/baptized/by/{limit}", personController.GetBaptizedPerson).Methods("GET")
 	person.HandleFunc("/baptized/{filter}", personController.GetBaptizedPersonByFilter).Methods("GET")

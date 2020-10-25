@@ -22,17 +22,18 @@ type UserController interface {
 	Update(w http.ResponseWriter, r *http.Request)
 	GetManyUsers(w http.ResponseWriter, r *http.Request)
 
-	Rols(w http.ResponseWriter, r*http.Request)
+	Rols(w http.ResponseWriter, r *http.Request)
 }
 
 type PersonController interface {
 	Create(w http.ResponseWriter, r *http.Request)
 	GetManyPersons(w http.ResponseWriter, r *http.Request)
 	GetManyPersonByFilter(w http.ResponseWriter, r *http.Request)
+	UpdatePerson(w http.ResponseWriter, r *http.Request)
 	GetBaptizedPerson(w http.ResponseWriter, r *http.Request)
-	GetBaptizedPersonByFilter(w http.ResponseWriter, r * http.Request)
-	GetBaptizedPartida(w http.ResponseWriter, r*http.Request)
-	DeleteBaptizedPartida(w http.ResponseWriter, r*http.Request)
+	GetBaptizedPersonByFilter(w http.ResponseWriter, r *http.Request)
+	GetBaptizedPartida(w http.ResponseWriter, r *http.Request)
+	DeleteBaptizedPartida(w http.ResponseWriter, r *http.Request)
 
 	CreatePriest(w http.ResponseWriter, r *http.Request)
 	GetManyPriest(w http.ResponseWriter, r *http.Request)
@@ -40,22 +41,21 @@ type PersonController interface {
 	GetCountPriest(w http.ResponseWriter, r *http.Request)
 
 	GetPlaces(w http.ResponseWriter, r *http.Request)
-	CreatePlace(w http.ResponseWriter, r*http.Request)
-	GetCountPlace(w http.ResponseWriter, r*http.Request)
+	CreatePlace(w http.ResponseWriter, r *http.Request)
+	GetCountPlace(w http.ResponseWriter, r *http.Request)
 }
 
 type DocumentController interface {
 	GetFolio(w http.ResponseWriter, r *http.Request)
 	GetBook(w http.ResponseWriter, r *http.Request)
 	CreateBook(w http.ResponseWriter, r *http.Request)
-	GetCountBook(w http.ResponseWriter, r*http.Request)
+	GetCountBook(w http.ResponseWriter, r *http.Request)
 
 	Baptism(w http.ResponseWriter, r *http.Request)
 	GetBaptisms(w http.ResponseWriter, r *http.Request)
 
-
-	GetAudit(w http.ResponseWriter, r*http.Request)
-	CreateAudi(w http.ResponseWriter, r*http.Request)
+	GetAudit(w http.ResponseWriter, r *http.Request)
+	CreateAudi(w http.ResponseWriter, r *http.Request)
 }
 
 // NewUserController retorna un nuevo controller de tipo usuario controller
