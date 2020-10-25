@@ -353,7 +353,6 @@ func (*repoPerson) UpdatePerson(ctx context.Context, person models.Person) error
 		person.Secondname,
 		person.Lastname,
 		person.Secondlastname,
-		person.Sexo,
 		person.ID,
 	)
 
