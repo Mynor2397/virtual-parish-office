@@ -343,8 +343,7 @@ func (*repoPerson) UpdatePerson(ctx context.Context, person models.Person) error
 		"firstName = ?, " +
 		"secondName = ?, " +
 		"lastName = ?, " +
-		"secondLastName = ?, " +
-		"sex = ? " +
+		"secondLastName = ? " +
 		"WHERE idPerson = ?; "
 
 	_, err := db.QueryContext(
