@@ -1,47 +1,52 @@
-CREATE  VIEW batismforpdf AS
-SELECT 
-bap.idBaptism,
-bap.numberBaptism, 
-fol.numberFolio, 
-book.numberBook,
-bap.bornDate,
-bap.baptismDate,  
-bau.firstName,
-bau.secondName,
-fat.firstName as firstNameFather, 
-fat.secondName as secondnameFather,
-fat.lastName as lastnameFather,
-fat.secondLastName as secondlastnameFather,
-mot.firstName as firstNameMother, 
-mot.secondName as secondnameMother,
-mot.lastName as lastnameMother,
-mot.secondLastName as secondlastnameMother,
-gfat.firstName as firstNameGodfather, 
-gfat.secondName as secondnameGodfather,
-gfat.lastName as lastnameGodfather,
-gfat.secondLastName as secondlastnameGodfather,
-gmot.firstName as firstnameGodmother,
-gmot.secondName as secondnameGodmother,
-gmot.lastName as lastnameGodmother,
-gmot.secondLastName as secondlastnameGodmother,
-mang.firstName as firstnameManager,
-mang.secondName as secondnameManager,
-mang.lastName as lastnameManager,
-mang.secondLastName as secondlastnameManager,
-pri.firstName as firstnamePriest, 
-pri.secondName as secondnamePriest,
-pri.lastName as lastnamePriest,
-pri.secondLastName as secondlastnamePriest
-FROM vpo_baptism bap
-INNER JOIN vpo_folio fol ON fol.idFolio = bap.idFolio
-INNER JOIN vpo_baptismbook book ON book.idBook = fol.idBook
-INNER JOIN vpo_priest pri ON pri.idPriest = bap.idPriest
-INNER JOIN vpo_person bau ON bau.idBaptism = bap.idBaptism
-LEFT JOIN vpo_person fat ON fat.idPerson = bau.idFather
-LEFT JOIN VPO_Person mot ON mot.idPerson = bau.idMother
-LEFT JOIN VPO_Person gfat ON gfat.idPerson = bau.idGodFather
-LEFT JOIN VPO_Person gmot ON gmot.idPerson = bau.idGodMother
-LEFT JOIN VPO_Person mang ON mang.idPerson = bau.idManager
+CREATE 
+VIEW `batismforpdf` AS
+    SELECT 
+        `bap`.`idBaptism` AS `idBaptism`,
+        `bap`.`numberBaptism` AS `numberBaptism`,
+        `fol`.`numberFolio` AS `numberFolio`,
+        `book`.`numberBook` AS `numberBook`,
+        `bau`.`bornDate` AS `borndDate`,
+        `bap`.`baptismDate` AS `baptismDate`,
+        `bau`.`firstName` AS `firstName`,
+        `bau`.`secondName` AS `secondName`,
+        `bau`.`lastName` AS `lastname`,
+        `bau`.`secondLastName` AS `secondLastname`,
+        `bau`.`sex` AS `sexo`,
+        `fat`.`firstName` AS `firstNameFather`,
+        `fat`.`secondName` AS `secondnameFather`,
+        `fat`.`lastName` AS `lastnameFather`,
+        `fat`.`secondLastName` AS `secondlastnameFather`,
+        `mot`.`firstName` AS `firstNameMother`,
+        `mot`.`secondName` AS `secondnameMother`,
+        `mot`.`lastName` AS `lastnameMother`,
+        `mot`.`secondLastName` AS `secondlastnameMother`,
+        `gfat`.`firstName` AS `firstNameGodfather`,
+        `gfat`.`secondName` AS `secondnameGodfather`,
+        `gfat`.`lastName` AS `lastnameGodfather`,
+        `gfat`.`secondLastName` AS `secondlastnameGodfather`,
+        `gmot`.`firstName` AS `firstnameGodmother`,
+        `gmot`.`secondName` AS `secondnameGodmother`,
+        `gmot`.`lastName` AS `lastnameGodmother`,
+        `gmot`.`secondLastName` AS `secondlastnameGodmother`,
+        `mang`.`firstName` AS `firstnameManager`,
+        `mang`.`secondName` AS `secondnameManager`,
+        `mang`.`lastName` AS `lastnameManager`,
+        `mang`.`secondLastName` AS `secondlastnameManager`,
+        `pri`.`firstName` AS `firstnamePriest`,
+        `pri`.`secondName` AS `secondnamePriest`,
+        `pri`.`lastName` AS `lastnamePriest`,
+        `pri`.`secondLastName` AS `secondlastnamePriest`
+    FROM
+        (((((((((`vpo_baptism` `bap`
+        JOIN `vpo_folio` `fol` ON ((`fol`.`idFolio` = `bap`.`idFolio`)))
+        JOIN `vpo_baptismbook` `book` ON ((`book`.`idBook` = `fol`.`idBook`)))
+        JOIN `vpo_priest` `pri` ON ((`pri`.`idPriest` = `bap`.`idPriest`)))
+        JOIN `vpo_person` `bau` ON ((`bau`.`idBaptism` = `bap`.`idBaptism`)))
+        LEFT JOIN `vpo_person` `fat` ON ((`fat`.`idPerson` = `bau`.`idFather`)))
+        LEFT JOIN `vpo_person` `mot` ON ((`mot`.`idPerson` = `bau`.`idMother`)))
+        LEFT JOIN `vpo_person` `gfat` ON ((`gfat`.`idPerson` = `bau`.`idGodFather`)))
+        LEFT JOIN `vpo_person` `gmot` ON ((`gmot`.`idPerson` = `bau`.`idGodMother`)))
+        LEFT JOIN `vpo_person` `mang` ON ((`mang`.`idPerson` = `bau`.`idManager`)))
 
 
 --

@@ -2,13 +2,13 @@ package middleware
 
 import (
 	"context"
-	"github.com/Mynor2397/virtual-parish-office/internal/lib"
-	"github.com/Mynor2397/virtual-parish-office/internal/models"
 	"log"
 	"net/http"
 	"strings"
 
 	"github.com/Mynor2397/virtual-parish-office/internal/helper"
+	"github.com/Mynor2397/virtual-parish-office/internal/lib"
+	"github.com/Mynor2397/virtual-parish-office/internal/models"
 )
 
 type claim string
@@ -37,7 +37,7 @@ func Auth(next http.Handler) http.Handler {
 			http.Error(w, err.Error(), http.StatusUnauthorized)
 			return
 		}
-		// log.Println("Middleware passed auth")
+
 		ctx := r.Context()
 		ctx = context.WithValue(ctx, Claims, models.User{ID: idUser, Rol: rolUser})
 		next.ServeHTTP(w, r.WithContext(ctx))

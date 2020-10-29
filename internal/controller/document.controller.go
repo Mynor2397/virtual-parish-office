@@ -2,13 +2,14 @@ package controller
 
 import (
 	"encoding/json"
-	"github.com/Mynor2397/virtual-parish-office/internal/middleware"
 	"net/http"
 	"strconv"
 
-	"github.com/Mynor2397/virtual-parish-office/internal/lib"
-	"github.com/Mynor2397/virtual-parish-office/internal/models"
 	"github.com/gorilla/mux"
+
+	"github.com/Mynor2397/virtual-parish-office/internal/lib"
+	"github.com/Mynor2397/virtual-parish-office/internal/middleware"
+	"github.com/Mynor2397/virtual-parish-office/internal/models"
 )
 
 func (*documentController) GetFolio(w http.ResponseWriter, r *http.Request) {
@@ -209,7 +210,7 @@ func (*documentController) GetCountBook(w http.ResponseWriter, r *http.Request) 
 	w.WriteHeader(http.StatusNoContent)
 }
 
-func (*documentController) CreateAudi(w http.ResponseWriter, r*http.Request) {
+func (*documentController) CreateAudi(w http.ResponseWriter, r *http.Request) {
 	id, ok := middleware.IsAuthenticated(r.Context())
 	if !ok {
 		respond(w, response{Message: lib.ErrUnauthenticated.Error()}, http.StatusUnauthorized)

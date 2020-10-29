@@ -3,6 +3,7 @@ package storage
 import (
 	"context"
 	"database/sql"
+
 	"github.com/Mynor2397/virtual-parish-office/internal/lib"
 	"github.com/Mynor2397/virtual-parish-office/internal/models"
 )
@@ -97,7 +98,7 @@ func (*repoPerson) CreatePriest(ctx context.Context, priest models.Priest) (int,
 	return count, nil
 }
 
-func (*repoPerson) GetLastPriest(ctx context.Context)(int, error){
+func (*repoPerson) GetLastPriest(ctx context.Context) (int, error) {
 	var count int
 	query := "SELECT COUNT(*) AS COUNT FROM VPO_Priest;"
 

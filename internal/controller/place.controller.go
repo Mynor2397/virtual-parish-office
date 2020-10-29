@@ -2,12 +2,12 @@ package controller
 
 import (
 	"encoding/json"
-	"github.com/Mynor2397/virtual-parish-office/internal/middleware"
-	"github.com/Mynor2397/virtual-parish-office/internal/models"
 	"log"
 	"net/http"
 
 	"github.com/Mynor2397/virtual-parish-office/internal/lib"
+	"github.com/Mynor2397/virtual-parish-office/internal/middleware"
+	"github.com/Mynor2397/virtual-parish-office/internal/models"
 )
 
 func (*personController) GetPlaces(w http.ResponseWriter, r *http.Request) {
@@ -77,7 +77,7 @@ func (*personController) CreatePlace(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNoContent)
 }
 
-func (*personController) GetCountPlace(w http.ResponseWriter, r*http.Request){
+func (*personController) GetCountPlace(w http.ResponseWriter, r *http.Request) {
 	id, ok := middleware.IsAuthenticated(r.Context())
 	if !ok {
 		respond(w, response{Message: lib.ErrUnauthenticated.Error()}, http.StatusUnauthorized)

@@ -1,10 +1,10 @@
 package routers
 
 import (
-	"github.com/Mynor2397/virtual-parish-office/internal/middleware"
 	"github.com/gorilla/mux"
 
 	"github.com/Mynor2397/virtual-parish-office/internal/controller"
+	"github.com/Mynor2397/virtual-parish-office/internal/middleware"
 	"github.com/Mynor2397/virtual-parish-office/internal/service"
 	"github.com/Mynor2397/virtual-parish-office/internal/storage"
 )

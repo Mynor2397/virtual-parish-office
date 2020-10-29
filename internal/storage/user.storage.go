@@ -82,7 +82,7 @@ func (*repoUser) GetManyUsers(ctx context.Context) ([]models.User, error) {
 	users := []models.User{}
 
 	query := "SELECT u.idUser, u.userName, r.typeRol FROM VPO_User u " +
-		 	 "INNER JOIN VPO_UserRole r ON u.uuidRol = r.uuidRol;"
+		"INNER JOIN VPO_UserRole r ON u.uuidRol = r.uuidRol;"
 	rows, err := db.QueryContext(ctx, query)
 	if err == sql.ErrNoRows {
 		return users, lib.ErrNotFound
@@ -111,9 +111,9 @@ func (*repoUser) Roles(ctx context.Context) ([]models.Rol, error) {
 		return rols, lib.ErrNotFound
 	}
 
-	for rows.Next(){
+	for rows.Next() {
 		err := rows.Scan(&rol.IDRol, &rol.TypeRol)
-		if err != nil{
+		if err != nil {
 			return rols, err
 		}
 		rols = append(rols, rol)

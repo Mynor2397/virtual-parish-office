@@ -2,11 +2,13 @@ package controller
 
 import (
 	"encoding/json"
+	"net/http"
+
 	"github.com/Mynor2397/virtual-parish-office/internal/helper"
 	"github.com/Mynor2397/virtual-parish-office/internal/models"
-	"net/http"
 )
 
+// SendMail Asincrona function for send mail to the central office
 func SendMail(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 

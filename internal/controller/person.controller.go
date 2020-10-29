@@ -2,7 +2,6 @@ package controller
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -290,7 +289,6 @@ func (*personController) GetManyPriestByFilter(w http.ResponseWriter, r *http.Re
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	vars := mux.Vars(r)
 
-	fmt.Println(r.Method)
 	data, err := personService.GetPriestByFilter(r.Context(), vars["filter"])
 
 	if err == lib.ErrNotFound {
@@ -395,7 +393,6 @@ func (*personController) DeleteBaptizedPartida(w http.ResponseWriter, r *http.Re
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	vars := mux.Vars(r)
 
-	fmt.Println(r.Method)
 	err := personService.DeleteBaptizedPartida(r.Context(), vars["id"])
 	if err == nil {
 		respond(w, response{

@@ -2,11 +2,12 @@ package controller
 
 import (
 	"encoding/json"
-	"github.com/Mynor2397/virtual-parish-office/internal/middleware"
-	"github.com/gorilla/mux"
 	"net/http"
 
+	"github.com/gorilla/mux"
+
 	"github.com/Mynor2397/virtual-parish-office/internal/lib"
+	"github.com/Mynor2397/virtual-parish-office/internal/middleware"
 	"github.com/Mynor2397/virtual-parish-office/internal/models"
 )
 
@@ -102,39 +103,39 @@ func (*userController) Update(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	err := userService.Update(r.Context(), vars["id"], user.Rol)
-	if err == nil{
+	if err == nil {
 		respond(w, response{
-			Ok:       true,
-			Message:  "Usuario actualizado satisfactoriamente",
+			Ok:      true,
+			Message: "Usuario actualizado satisfactoriamente",
 		}, http.StatusAccepted)
 		return
 	}
 
-	if err != nil{
+	if err != nil {
 		respondError(w, err)
 		return
 	}
 }
 
-func ( *userController) GetManyUsers(w http.ResponseWriter, r *http.Request) {
+func (*userController) GetManyUsers(w http.ResponseWriter, r *http.Request) {
 	var users []models.User
 	data, err := userService.GetManyUsers(r.Context())
-	if err == lib.ErrNotFound{
+	if err == lib.ErrNotFound {
 		respond(w, response{
-			Ok: false,
+			Ok:   false,
 			Data: users,
 		}, http.StatusNotFound)
 	}
 
-	if err == nil{
+	if err == nil {
 		respond(w, response{
-			Ok: true,
+			Ok:   true,
 			Data: data,
 		}, http.StatusOK)
 		return
 	}
 
-	if err != nil{
+	if err != nil {
 		respondError(w, err)
 		return
 	}
@@ -142,25 +143,25 @@ func ( *userController) GetManyUsers(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNoContent)
 }
 
-func (*userController) Rols(w http.ResponseWriter, r*http.Request){
+func (*userController) Rols(w http.ResponseWriter, r *http.Request) {
 
 	data, err := userService.Roles(r.Context())
-	if err == lib.ErrNotFound{
+	if err == lib.ErrNotFound {
 		respond(w, response{
-			Ok: false,
+			Ok:   false,
 			Data: data,
 		}, http.StatusNotFound)
 	}
 
-	if err == nil{
+	if err == nil {
 		respond(w, response{
-			Ok: true,
+			Ok:   true,
 			Data: data,
 		}, http.StatusOK)
 		return
 	}
 
-	if err != nil{
+	if err != nil {
 		respondError(w, err)
 		return
 	}
