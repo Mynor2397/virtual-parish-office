@@ -71,7 +71,7 @@ func (*documentController) Baptism(w http.ResponseWriter, r *http.Request) {
 		respond(w, response{
 			Ok:   true,
 			Data: data,
-		}, http.StatusOK)
+		}, http.StatusCreated)
 		return
 	}
 

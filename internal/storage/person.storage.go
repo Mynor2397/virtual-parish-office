@@ -3,6 +3,8 @@ package storage
 import (
 	"context"
 	"database/sql"
+	"errors"
+	"log"
 
 	"github.com/Mynor2397/virtual-parish-office/internal/lib"
 	"github.com/Mynor2397/virtual-parish-office/internal/models"
@@ -338,7 +340,7 @@ func (*repoPerson) GetManyPersonByFilter(ctx context.Context, limit int, filter 
 	return persons, nil
 }
 
-func (*repoPerson) UpdatePerson(ctx context.Context, person models.Person) error {
+func (*repoPerson) UpdatePerson(person models.Person) error {
 	querydb := "UPDATE VPO_Person SET " +
 		"firstName = ?, " +
 		"secondName = ?, " +
@@ -346,8 +348,7 @@ func (*repoPerson) UpdatePerson(ctx context.Context, person models.Person) error
 		"secondLastName = ? " +
 		"WHERE idPerson = ?; "
 
-	_, err := db.QueryContext(
-		ctx,
+	fields, err := db.Exec(
 		querydb,
 		person.Firstname,
 		person.Secondname,
@@ -358,6 +359,13 @@ func (*repoPerson) UpdatePerson(ctx context.Context, person models.Person) error
 
 	if err != nil {
 		return err
+	}
+
+	affected, eror := fields.RowsAffected()
+	log.Println(eror)
+
+	if affected == 0 {
+		return errors.New("404")
 	}
 
 	return nil

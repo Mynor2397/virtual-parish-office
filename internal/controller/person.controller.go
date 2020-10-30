@@ -2,6 +2,7 @@ package controller
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -31,6 +32,7 @@ func (*personController) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fmt.Println(person)
 	result, err := personService.Create(r.Context(), person)
 	persons = append(persons, result)
 	if err == nil {
@@ -439,13 +441,21 @@ func (*personController) UpdatePerson(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err := personService.UpdatePerson(r.Context(), person, id)
+	err := personService.UpdatePerson(person, id)
 	if err == nil {
 		respond(w, response{
 			Ok:      true,
 			Message: "Successfully updated",
 		}, http.StatusOK)
 
+		return
+	}
+
+	if err.Error() == "404" {
+		respond(w, response{
+			Ok:      false,
+			Message: "El registro no fue encontrado",
+		}, http.StatusNotFound)
 		return
 	}
 

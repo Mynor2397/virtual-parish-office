@@ -19,6 +19,6 @@ func InitRoutes() *mux.Router {
 	api = SetPersonRoutes(api)
 	api = SetPlacesRoutes(api)
 	api = SetDocumentRoutes(api)
-
+	router.Use(middleware.WriteJSONHeader)
 	return router
 }

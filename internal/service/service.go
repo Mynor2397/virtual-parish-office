@@ -30,7 +30,7 @@ type PersonService interface {
 	Create(ctx context.Context, person models.Person) (models.Person, error)
 	GetManyPersons(cxt context.Context, ctx string) ([]models.Person, error)
 	GetManyPersonByFilter(ctx context.Context, limit int, filter string) ([]models.Person, error)
-	UpdatePerson(ctx context.Context, person models.Person, id string) error
+	UpdatePerson(person models.Person, id string) error
 	GetBaptizedPerson(ctx context.Context, limit int) ([]models.Baptism, error)
 	GetBaptizedPersonByFilter(ctx context.Context, filter string) ([]models.Baptism, error)
 	GetBaptizedPartida(ctx context.Context, id string) (models.Baptism, error)

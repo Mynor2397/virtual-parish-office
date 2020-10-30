@@ -28,7 +28,7 @@ type PersonStorage interface {
 	Create(ctx context.Context, person models.Person) (models.Person, error)
 	GetManyPersons(ctx context.Context, sex string) ([]models.Person, error)
 	GetManyPersonByFilter(ctx context.Context, limit int, filter string) ([]models.Person, error)
-	UpdatePerson(ctx context.Context, person models.Person) error
+	UpdatePerson(person models.Person) error
 	GetBaptizedPerson(ctx context.Context, limit int) ([]models.Baptism, error)
 	GetBaptizedPersonByFilter(ctx context.Context, filter string) ([]models.Baptism, error)
 	GetBaptizedPartida(ctx context.Context, id string) (models.Baptism, error)
